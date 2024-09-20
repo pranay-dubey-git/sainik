@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sainik Mitra - Home</title>
+    <link rel="stylesheet" href="sm.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="logo">Sainik Mitra</div>
+        </div>
+
+        <div id="side-menu" class="side-menu">
+            <button class="close-btn" onclick="toggleMenu()">&times;</button>
+            <ul class="menu-links">
+                <li class="profile-pic-container">
+                    <img id="display-pic" src="default-pic.jpg" alt="User Picture" class="menu-user-pic">
+                    <label for="profile-pic-input" class="edit-pic-icon">✏️</label>
+                    <input type="file" id="profile-pic-input" accept="image/*" style="display: none;" onchange="changeProfilePic(event)">
+                </li>
+                <li><a href="#">Username: <span id="username">Username</span></a></li>
+                <li><a href="sm.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="bi.html">Basic Info</a></li>
+                <li><a href="results.html">Notifications</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="home-section">
+        <h1>Welcome to Sainik Mitra</h1>
+        <p>Your companion in serving the nation and connecting with fellow servicemen.</p>
+        <a href="questionnaire.html" class="cta-btn">Take Questionnaire</a>
+    </section>
+
+    <footer>
+        <p>© 2024 Sainik Mitra | All rights reserved.</p>
+    </footer>
+
+    <script src="sm.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sainik Mitra - Questionnaire</title>
+    <link rel="stylesheet" href="sm.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="logo">Sainik Mitra</div>
+        </div>
+
+        <div id="side-menu" class="side-menu">
+            <button class="close-btn" onclick="toggleMenu()">&times;</button>
+            <ul class="menu-links">
+                <li class="profile-pic-container">
+                    <img id="display-pic" src="default-pic.jpg" alt="User Picture" class="menu-user-pic">
+                    <label for="profile-pic-input" class="edit-pic-icon">✏️</label>
+                    <input type="file" id="profile-pic-input" accept="image/*" style="display: none;" onchange="changeProfilePic(event)">
+                </li>
+                <li><a href="#">Username: <span id="username">Username</span></a></li>
+                <li><a href="sm.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="basic-info.html">Basic Info</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="questionnaire-section">
+
+        <h2>Questionnaire</h2>
+        <form id="questionnaire-form">
+            <ol>
+                <li>
+                    <label for="closest-family">Whom are/were you closest to in family:</label>
+                    <select id="closest-family" name="closest-family" required>
+                        <option value="" disabled selected>Select one</option>
+                            <option value="father">Father</option>
+                            <option value="mother">Mother</option>
+                            <option value="brother">Brother</option>
+                            <option value="sister">Sister</option>
+                            <option value="nobody">Nobody</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="distant-family">Whom are/were you most distant from:</label>
+                    <select id="distant-family" name="distant-family" required>
+                        <option value="" disabled selected>Select one</option>
+                            <option value="father">Father</option>
+                            <option value="mother">Mother</option>
+                            <option value="brother">Brother</option>
+                            <option value="sister">Sister</option>
+                            <option value="nobody">Nobody</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="marital-status">Current marital status:</label>
+                    <select id="marital-status" name="marital-status" required>
+                        <option value="" disabled selected>Select one</option>
+                        <option value="married">Married</option>
+                        <option value="unmarried">Unmarried</option>
+                        <option value="divorced">Divorced</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="anxiety-symptoms">Any symptoms of anxiety:</label>
+                    <select id="anxiety-symptoms" name="anxiety-symptoms" required>
+                        <option value="" disabled selected>Select one</option>
+                        <option value="stressed">Stressed</option>
+                        <option value="sleeplessness">Sleeplessness</option>
+                        <option value="irritated-mood">Irritated Mood</option>
+                        <option value="appetite">Appetite Issues</option>
+                        <option value="no-issues">No Issues</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Describe relationship with your mother:</label>
+                    <div class="options-container">
+                        <div class="option-item">
+                            <input type="radio" id="mother-good" name="mother-relationship" value="Good" required>
+                            <label for="mother-good">Good</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="mother-average" name="mother-relationship" value="Average" required>
+                            <label for="mother-average">Average</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="mother-bad" name="mother-relationship" value="Bad" required>
+                            <label for="mother-bad">Bad</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="mother-cant-say" name="mother-relationship" value="Can't Say" required>
+                            <label for="mother-cant-say">Can't Say</label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <label>Describe relationship with your father:</label>
+                    <div class="options-container">
+                        <div class="option-item">
+                            <input type="radio" id="father-good" name="father-relationship" value="Good" required>
+                            <label for="father-good">Good</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="father-average" name="father-relationship" value="Average" required>
+                            <label for="father-average">Average</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="father-bad" name="father-relationship" value="Bad" required>
+                            <label for="father-bad">Bad</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="father-cant-say" name="father-relationship" value="Can't Say" required>
+                            <label for="father-cant-say">Can't Say</label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <label>Problems experienced during teen years:</label>
+                    <div class="options-container">
+                        <div class="option-item">
+                            <input type="radio" id="teen-disturbed-parents" name="teen-problems" value="Disturbed Parents relationship" required>
+                            <label for="teen-disturbed-parents">Disturbed Parents relationship</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="teen-financial" name="teen-problems" value="Financial issues" required>
+                            <label for="teen-financial">Financial issues</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="teen-sexual-abuse" name="teen-problems" value="Sexual abuse" required>
+                            <label for="teen-sexual-abuse">Sexual abuse</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="teen-troubled-siblings" name="teen-problems" value="Troubled relations with siblings" required>
+                            <label for="teen-troubled-siblings">Troubled relations with siblings</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="teen-no-problems" name="teen-problems" value="No problems" required>
+                            <label for="teen-no-problems">No problems</label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <label>Ever tried any substance:</label>
+                    <div class="options-container">
+                        <div class="option-item">
+                            <input type="radio" id="substance-drugs" name="substance-used" value="Drugs" required>
+                            <label for="substance-drugs">Drugs</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="substance-alcohol" name="substance-used" value="Alcohol" required>
+                            <label for="substance-alcohol">Alcohol</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="substance-smoking" name="substance-used" value="Smoking" required>
+                            <label for="substance-smoking">Smoking</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="substance-never" name="substance-used" value="Never used" required>
+                            <label for="substance-never">Never used</label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <label>Any issues with wife:</label>
+                    <div class="options-container">
+                        <div class="option-item">
+                            <input type="radio" id="wife-extra-marital" name="wife-issues" value="extra marital affair" required>
+                            <label for="wife-extra-marital">Extra marital affair</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="wife-conceive" name="wife-issues" value="Not able to conceive" required>
+                            <label for="wife-conceive">Not able to conceive</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="wife-domestic-issues" name="wife-issues" value="Domestic Issues" required>
+                            <label for="wife-domestic-issues">Domestic Issues</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="wife-no-problems" name="wife-issues" value="No problems" required>
+                            <label for="wife-no-problems">No problems</label>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    
+    <script src="sm.js"></script>
+    <script>
+    document.getElementById('questionnaire-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        const formData = new FormData(this);
+
+        const answers = {
+            closest: formData.get('closest'),
+            distant: formData.get('distant'),
+            maritalStatus: formData.get('marital-status'),
+            anxietySymptoms: formData.get('anxiety-symptoms'),
+            motherRelationship: formData.get('mother-relationship'),
+            fatherRelationship: formData.get('father-relationship'),
+            teenProblems: formData.get('teen-problems'),
+            substanceUsed: formData.get('substance-used'),
+            wifeIssues: formData.get('wife-issues')
+        };
+
+        // Initialize flag counts
+        let redFlag = 0;
+        let blueFlag = 0;
+        let greenFlag = 0;
+
+        // Analyze answers and update flag counts based on positivity/negativity
+        if (answers.closest === "father" || answers.closest === "mother") {
+            greenFlag++; // Positive relationship with parents
+        } else {
+            blueFlag++;
+        }
+
+        if (answers.distant === "father" || answers.distant === "mother") {
+            redFlag++; // Distant from parents is a red flag
+        } else {
+            blueFlag++;
+        }
+
+        if (answers.maritalStatus === "divorced") {
+            redFlag++; // Divorce as a negative life event
+        } else if (answers.maritalStatus === "married") {
+            greenFlag++;
+        } else {
+            blueFlag++;
+        }
+
+        if (answers.anxietySymptoms === "no-issues") {
+            greenFlag++; // Anxiety symptoms indicate a red flag
+        } else {
+            redFlag++;
+        }
+
+        if (answers.motherRelationship === "Bad" || answers.fatherRelationship === "Bad") {
+            redFlag++; // Bad relationship with parents is a red flag
+        } else if (answers.motherRelationship === "Good" || answers.fatherRelationship === "Good") {
+            greenFlag++;
+        } else {
+            blueFlag++;
+        }
+
+        if (answers.teenProblems === "No problems") {
+            greenFlag++; // Negative experiences during teen years
+        } else {
+            redFlag++;
+        }
+
+        if (answers.substanceUsed !== "Never used") {
+            redFlag++; // Substance use as a red flag
+        }
+
+        if (answers.wifeIssues === "No problems") {
+            greenFlag++; // No issues in marriage
+        } else {
+            redFlag++; // Marital problems are considered negative
+        }
+
+        // Save answers and flag counts to localStorage
+        const results = {
+            answers: answers,
+            flags: { redFlag, blueFlag, greenFlag }
+        };
+
+        localStorage.setItem('questionnaireResults', JSON.stringify(results));
+        window.location.href = 'results.html';
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Sainik Mitra</title>
+    <link rel="stylesheet" href="sm.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        /* Hamburger menu styles */
+        .hamburger-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger-menu .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+        }
+
+        .side-menu {
+            width: 250px;
+            height: 100%;
+            background-color: #343a40;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: 0.3s;
+            padding-top: 60px;
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .side-menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .side-menu ul li {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .side-menu ul li:hover {
+            background-color: #007bff;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: auto;
+            padding: 20px;
+        }
+
+        .results-section {
+            text-align: center;
+        }
+
+        /* Card design for flags */
+        .flag-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            display: inline-block;
+        }
+
+        .flag-card h3 {
+            margin-top: 0;
+        }
+
+        /* Flag colors */
+        .red-flag {
+            border-left: 5px solid red;
+        }
+
+        .blue-flag {
+            border-left: 5px solid blue;
+        }
+
+        .green-flag {
+            border-left: 5px solid green;
+        }
+
+        /* Highlighted answers */
+        .highlighted {
+            background-color: rgba(255, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .flag-card {
+                width: 80%;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="logo">Sainik Mitra</div>
+        </div>
+    </header>
+
+    <div id="side-menu" class="side-menu">
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+        <ul class="menu-links">
+            <li class="profile-pic-container">
+                <img id="display-pic" src="default-pic.jpg" alt="User Picture" class="menu-user-pic">
+                <label for="profile-pic-input" class="edit-pic-icon">✏️</label>
+                <input type="file" id="profile-pic-input" accept="image/*" style="display: none;" onchange="changeProfilePic(event)">
+            </li>
+            <li><a href="sm.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="basic-info.html">Basic Info</a></li>
+            <li><a href="questionnaire.html">Questionnaire</a></li>
+            <li><a href="results.html">Notifications</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="results-section">
+            <h2>Your Results</h2>
+
+            <div id="flags-container">
+                <div class="flag-card red-flag">
+                    <h3>Red Flag</h3>
+                    <p><span id="red-flag-count">0</span></p>
+                </div>
+                <div class="flag-card blue-flag">
+                    <h3>Blue Flag</h3>
+                    <p><span id="blue-flag-count">0</span></p>
+                </div>
+                <div class="flag-card green-flag">
+                    <h3>Green Flag</h3>
+                    <p><span id="green-flag-count">0</span></p>
+                </div>
+            </div>
+
+            <div id="results-content">
+                <h3>Questionnaire Answers:</h3>
+                <div id="answers-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sainik Mitra | All rights reserved.</p>
+    </footer>
+
+    <script src="sm.js"></script>
+    <ol>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('side-menu');
+            menu.classList.toggle('open');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const results = JSON.parse(localStorage.getItem('questionnaireResults'));
+            if (results) {
+                const { answers, flags } = results;
+
+                // Update flag counts
+                document.getElementById('red-flag-count').textContent = flags.redFlag;
+                document.getElementById('blue-flag-count').textContent = flags.blueFlag;
+                document.getElementById('green-flag-count').textContent = flags.greenFlag;
+
+                // Prepare answers list
+               
+                 const answersList = document.getElementById('answers-list');
+            answersList.innerHTML = `
+                <p><strong>Whom are/were you closest to in family:</strong> <span class="${answers.closest === 'nobody' ? 'highlighted' : ''}">${answers.closest}</span></p>
+                <p><strong>Whom are/were you most distant from:</strong> <span class="${flags.redFlag > 0 && answers.distant === 'father' ? 'highlighted' : ''}">${answers.distant}</span></p>
+                <p><strong>Current marital status:</strong> <span class="${flags.redFlag > 0 && answers.maritalStatus === 'Married' ? 'highlighted' : ''}">${answers.maritalStatus}</span></p>
+                <p><strong>Any symptoms of anxiety:</strong> <span class="${flags.redFlag > 0 && answers.anxietySymptoms.includes('Stressed') ? 'highlighted' : ''}">${answers.anxietySymptoms}</span></p>
+                <p><strong>Describe relationship with your mother:</strong> <span class="${flags.redFlag > 0 && answers.motherRelationship === 'Bad' ? 'highlighted' : ''}">${answers.motherRelationship}</span></p>
+                <p><strong>Describe relationship with your father:</strong> <span class="${flags.redFlag > 0 && answers.fatherRelationship === 'Bad' ? 'highlighted' : ''}">${answers.fatherRelationship}</span></p>
+                <p><strong>Problems experienced during teen years:</strong> <span class="${flags.redFlag > 0 && answers.teenProblems.includes('Disturbed Parents relationship') ? 'highlighted' : ''}">${answers.teenProblems}</span></p>
+                <p><strong>Ever tried any substance:</strong> <span class="${flags.redFlag > 0 && answers.substanceUsed === 'Drugs' ? 'highlighted' : ''}">${answers.substanceUsed}</span></p>
+                <p><strong>Any issues with wife:</strong> <span class="${flags.redFlag > 0 && answers.wifeIssues === 'extra marital affair' ? 'highlighted' : ''}">${answers.wifeIssues}</span></p>
+            `; 
+        }
+    }); 
+</script>
+</ol>
+</body>
+</html>

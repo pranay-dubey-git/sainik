@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sainik Mitra - Profile</title>
+    <link rel="stylesheet" href="sm.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="logo">Sainik Mitra</div>
+        </div>
+
+        <div id="side-menu" class="side-menu">
+            <button class="close-btn" onclick="toggleMenu()">&times;</button>
+            <ul class="menu-links">
+                <li class="profile-pic-container">
+                    <img id="display-pic" src="default-pic.jpg" alt="User Picture" class="menu-user-pic">
+                    <label for="profile-pic-input" class="edit-pic-icon">✏️</label>
+                    <input type="file" id="profile-pic-input" accept="image/*" style="display: none;" onchange="changeProfilePic(event)">
+                </li>
+                <li><a href="#">Username: <span id="username">Username</span></a></li>
+                <li><a href="sm.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="basic-info.html">Basic Info</a></li>
+                <li><a href="results.html">Notifications</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="profile-section">
+        <div class="profile-form">
+            <h2>Edit Profile</h2>
+            <form id="profile-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                <button type="submit" id="save-button">Save</button>
+            </form>
+
+            <!-- Display Profile Information -->
+            <div id="profile-display" style="display: none;">
+                <h2>Profile Information</h2>
+                <p><strong>Name:</strong> <span id="display-name"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="display-dob"></span></p>
+                <p><strong>Age:</strong> <span id="display-age"></span></p> <!-- New Age Display -->
+                <p><strong>Email:</strong> <span id="display-email"></span></p>
+                <p><strong>Phone Number:</strong> <span id="display-phone"></span></p>
+                <button id="change-button" onclick="enableEdit()">Change</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Sainik Mitra | All rights reserved.</p>
+    </footer>
+
+    <script src="sm.js"></script>
+</body>
+</html>
